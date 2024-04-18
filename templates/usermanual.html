@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Manual</title>
+    <style>
+        /* Styling the background picture */
+        body.pic {
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+            background-image: url('{{ url_for('static', filename='bg.png') }}'); /* Replace with the path to your image */
+            background-size: cover; /* Cover the entire screen */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            height: 100vh; /* Set the height of the body to the full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(11, 11, 11); /* Text color on top of the image */
+            font-family: Arial, sans-serif; /* Specify font family */
+            text-align: center; /* Center-align text */
+        }
+
+        /* Style for the button */
+        .colored-button {
+            background-color: #4CAF50; /* Green color */
+            color: white; /* Text color */
+            padding: 10px 20px; /* Padding around the text */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Optional: Add rounded corners */
+            cursor: pointer; /* Add a pointer cursor on hover */
+        }
+
+        /* Style for the popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .bullet-points {
+            text-align: left;
+            margin-left: 20px;
+        }
+        .bullet-points li {
+            margin-bottom: 10px;
+        }
+        .bullet-points ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        /* Add a blur effect to the body when the popup is displayed */
+        body.pic.blurred {
+            filter: blur(5px); /* Adjust the blur intensity as needed */
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var popup = document.getElementById("popup");
+
+            setTimeout(function() {
+                popup.style.display = "block";
+            }, 1000);
+        };
+    </script>
+</head>
+<body class="pic">
+    <center>
+        <div id="popup" class="popup" style="display: none;">
+            <b><p><h2>User Manual</h2></p></b>
+            <p><img src="{{ url_for('static', filename='robo.jpeg') }}" alt="image" width="210px" height="130px"></p>
+            <h4><p>Welcome to Pizzy's User Manual</p></h4>
+            <div class="bullet-points">
+                <ul>
+                    <li>If you want to know our best items, for example you can type "What are the best food items available" or "Suggest me your best items"</li>
+                   <li>If you want to see the menu, type "menu"</li>
+                    <li>While ordering, start your order with "I want...", so that chatbot will understand that you are placing your order</li>
+                    <li>Specify the quantity you want before typing the item name. For example: I want 1 veggie pizza, 2 coke....</li>
+                    <li>You can cancel your order by typing "I want to cancel my order" </li>
+                    <li>Please follow the instructions given by the chatbot correctly</li>
+                    
+                </ul>
+            </div>
+            
+            
+            <b><p>Click here to start conversing with the chatbot</p></b>
+            <a href="chatbot"><button class="colored-button">Click here</button></a>
+        </div>
+    </center>
+</body>
+</html>
