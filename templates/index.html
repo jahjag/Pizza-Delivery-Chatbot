@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pizza Restaurant</title>
+    <style>
+        /* Styling the background picture */
+        body.pic {
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+            background-image: url('{{ url_for('static', filename='bg3.png') }}'); /* Replace with the path to your image */
+            background-size: cover; /* Cover the entire screen */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            height: 100vh; /* Set the height of the body to the full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(11, 11, 11); /* Text color on top of the image */
+            font-family: Arial, sans-serif; /* Specify font family */
+            text-align: center; /* Center-align text */
+        }
+
+        /* Style for the button */
+        .colored-button {
+            background-color: #4CAF50; /* Green color */
+            color: white; /* Text color */
+            padding: 10px 20px; /* Padding around the text */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Optional: Add rounded corners */
+            cursor: pointer; /* Add a pointer cursor on hover */
+        }
+
+        /* Style for the popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        /* Add a blur effect to the body when the popup is displayed */
+        body.pic.blurred {
+            filter: blur(5px); /* Adjust the blur intensity as needed */
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var popup = document.getElementById("popup");
+
+            setTimeout(function() {
+                popup.style.display = "block";
+            }, 1500);
+        };
+    </script>
+</head>
+<body class="pic">
+    <center>
+        <div id="popup" class="popup" style="display: none;">
+            <b><p><h2>Welcome to our Pizza Restaurant!.</h2></p></b>
+            <p><img src="{{ url_for('static', filename='robot-unscreen.gif') }}" alt="GIF" width="400px" height="250px"></p>
+            <p>Hi! I am Pizzy.</p>
+            <p>I am an AI assistant who helps to improve the ordering experience</p>
+            <p>Click here to place an order</p>
+            <a href="/login"><button class="colored-button">Click here</button></a>
+        </div>
+    </center>
+</body>
+</html>
