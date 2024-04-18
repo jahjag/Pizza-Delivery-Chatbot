@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign Up</title>
+        <style>
+            .error {
+          color: red;
+        }
+            body {
+                background-repeat: no-repeat;
+                background-size:cover;
+                background-image: url('{{ url_for('static', filename='bg.png') }}');
+            }
+    
+            div {
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                height: 100vh;
+            }
+    
+            .cl {
+                width: 100%;
+            }
+
+            /* Style for the button */
+        .colored-button {
+            /*background-color: #4CAF50; /* Green color */
+            color: white; /* Text color */
+            padding: 10px 20px; /* Padding around the text */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Optional: Add rounded corners */
+            cursor: pointer; /* Add a pointer cursor on hover */
+            text-decoration: none;
+            width: 100%;
+        }
+    
+            button {
+                background-color: goldenrod;
+            }
+    
+            input {
+                margin-top: 5px;
+            }
+    
+            h1 {
+                text-align: center;
+            }
+    
+            form {
+                padding-top: 5px;
+                padding-bottom: 5px; 
+                padding-left: 20px;
+                padding-right: 20px; 
+                border-radius:4px;
+                background-color: white;
+            }
+    
+        </style>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <script>
+             function validatePhoneNumber() {
+                 var phoneNumber = document.getElementById("phoneNumber").value;
+                 var regex = /^[6-9]\d{9}$/;
+     
+                 if (regex.test(phoneNumber)) {
+                     // Valid phone number
+                     document.getElementById("error").innerHTML = "";
+                 } else {
+                     document.getElementById("error").innerHTML = "Invalid Phone Number!";
+                 }
+             }
+
+             function validateForm() {
+                var name = document.getElementById("name").value;
+                var email = document.getElementById("emailInput").value;
+                var age = document.getElementById("age").value;
+                var phoneNumber = document.getElementById("phoneNumber").value;
+                var password = document.getElementById("password").value;
+
+                if (name === "" || email === "" || age === "" || phoneNumber === "" || password === "") {
+                    alert("Please fill in all fields.");
+                    return false; // Prevent form submission
+                }
+
+                // Additional validation logic if needed
+
+                return true; // Allow form submission
+            }
+
+         </script>
+    </head>
+    <body>
+        <div>
+            <form action="{{ url_for('user_registration') }}" method="post" onsubmit="return validateForm()">
+                <h1>Sign Up</h1>
+                <label for="name"><b>Name</b></label><br>
+                <input id="name" class="cl" type="text" name="name"><br><br>
+                <label for="email"><b>Email</b></label><br>
+                <input class="cl" type="text" id="emailInput" name="email"><br>
+                <p id="emailValidationMessage" class="error"></p>
+                <script>
+                    document.getElementById('emailInput').addEventListener('input', function () {
+                      var emailInputValue = this.value;
+                      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                      var emailValidationMessage = '';
+                
+                      if (emailPattern.test(emailInputValue)) {
+                        emailValidationMessage = 'Valid Email';
+                      } else {
+                        emailValidationMessage = 'Invalid Email!';
+                      }
+                
+                      document.getElementById('emailValidationMessage').innerText = emailValidationMessage;
+                    });
+                  </script>
+                <label for="age"><b>Age</b></label><br>
+                <input id="age" class="cl" type="text" name="age"><br><br>
+                <label for="phoneNumber"><b>Mobile number</b></label><br>
+                <!--<select class="rounded" style="width : 61px; height : 30px;background-color:gainsboro;">
+                    <option value="India">IN +91</option>
+                </select>-->
+                <input class="cl" type="text" id="phoneNumber" oninput="validatePhoneNumber()" placeholder="Enter 10-digit number" name="phoneNumber">
+                <p id="error" style="color: red;"></p>
+                <label for="password"><b>Password</b></label><br>
+                <input id="password" class="cl" type="password" placeholder="must have atleast 6 characters" name="password"> <br><br>
+    
+                <!--<button class="cl" type="continue"><a href="/chatbot" class="colored-button">continue</a></button>-->
+                <button class="colored-button" type="submit">Continue</button>
+                <p>Already have an account? <a href="/login">Login</a></p>
+                <p><i>By creating an account or logging in, you agree to Pizzybot's Terms and Conditions</i></p> 
+            </form>
+        </div>
+    </body>
+    </html>
